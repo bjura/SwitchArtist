@@ -1,0 +1,21 @@
+SwitchArtistButton {
+    border-image: url("rest_button.png");
+    color: rgb(20, 120, 150);
+    font-size: 15;
+}
+
+SwitchArtistButton:hover {
+    border-image: url("hover_button.png");
+    font-size: 15;
+    color: red;
+}
+
+SwitchArtistButton.color {
+    border-image: url("rest_button_color.png");
+    font-size: 15;
+}
+
+SwitchArtistButton.color:hover {
+    border-image: url("hover_button_color.png");
+    font-size: 15;
+}

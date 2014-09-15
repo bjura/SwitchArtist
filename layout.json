@@ -1,0 +1,213 @@
+[
+    {
+        "id": "main",
+        "type": "ClutterActor",
+        "x-expand": true,
+        "y-expand": true,
+        "margin-top": 25,
+        "margin-bottom": 25,
+        "margin-left": 25,
+        "margin-right": 25,
+        "layout-manager":
+            {
+                "type": "ClutterBinLayout"
+            },
+        "children": ["main_box"]
+    },
+    {
+        "id": "main_box",
+        "type": "ClutterActor",
+        "layout-manager":
+            {
+                "type": "ClutterBoxLayout",
+                "spacing": 10,
+                "orientation": "vertical"
+            },
+        "children": ["main_menu", "middle_box"]
+    },
+    {
+        "id": "middle_box",
+        "type": "ClutterActor",
+        "layout-manager":
+            {
+                "type": "ClutterBoxLayout",
+                "spacing": 10
+            },
+        "children": ["line_menu", "easel", "color_menu"]
+    },
+    {
+        "id": "line_menu",
+        "type": "ClutterActor",
+        "layout-manager":
+            {
+                "type": "ClutterBoxLayout",
+                "orientation": "vertical",
+                "spacing": 10
+            },
+        "children": ["line1", "line2", "line3"]
+    },
+    {
+        "id": "line1",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "handler-name": "line_width_definition",
+        "height": 100,
+        "label": "5 pkt"
+    },
+    {
+        "id": "line2",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "handler-name": "line_width_definition",
+        "height": 100,
+        "label": "10 pkt"
+    },
+    {
+        "id": "line3",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "handler-name": "line_width_definition",
+        "height": 100,
+        "label": "15 pkt"
+    },
+    {
+        "id": "easel",
+        "type": "SwitchArtistEasel",
+        "width": 1100,
+        "height": 700
+    },
+    {
+        "id": "main_menu",
+        "type": "ClutterActor",
+        "layout-manager":
+            {
+                "type": "ClutterBoxLayout",
+                "spacing": 10
+            },
+        "children": ["button1", "button2", "button3", "button4", "button5",
+                     "button6", "button7"]
+    },
+    {
+        "id": "button1",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "handler-name": "new_spot",
+        "height": 100,
+        "label": "NOWY\nPKT"
+    },
+    {
+        "id": "button2",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "height": 100,
+        "handler-name": "undo",
+        "label": "COFNIJ"
+    },
+    {
+        "id": "button3",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "height": 100,
+        "handler-name": "move_to_color_menu",
+        "label": "KOLORY"
+    },
+    {
+        "id": "button4",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "height": 100,
+        "handler-name": "move_to_line_menu",
+        "label": "LINIE"
+    },
+    {
+        "id": "button5",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "height": 100,
+        "handler-name": "save_to_file",
+        "label": "ZAPISZ"
+    },
+    {
+        "id": "button6",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "height": 100,
+        "handler-name": "draw",
+        "label": "RYSUJ"
+    },
+    {
+        "id": "button7",
+        "type": "SwitchArtistButton",
+        "width": 100,
+        "handler-name": "clear_canvas",
+        "height": 100,
+        "label": "CZYŚĆ"
+    },
+    {
+        "id": "color_menu",
+        "type": "ClutterActor",
+        "width": 100,
+        "height": 600,
+        "layout-manager":
+            {
+                "type": "ClutterBoxLayout",
+                "orientation": "vertical",
+                "spacing": 10
+            },
+        "children": ["color1", "color2", "color3", "color4", "color5", "color6"]
+    },
+    {
+        "id": "color1",
+        "type": "SwitchArtistButton",
+        "style-class": "color",
+        "handler-name": "color_definition",
+        "width": 100,
+        "height": 100,
+        "background-color": "red"
+    },
+    {
+        "id": "color2",
+        "type": "SwitchArtistButton",
+        "style-class": "color",
+        "handler-name": "color_definition",
+        "width": 100,
+        "height": 100,
+        "background-color": "blue"
+    },
+    {
+        "id": "color3",
+        "type": "SwitchArtistButton",
+        "style-class": "color",
+        "handler-name": "color_definition",
+        "width": 100,
+        "height": 100,
+        "background-color": "green"
+    },
+    {
+        "id": "color4",
+        "type": "SwitchArtistButton",
+        "style-class": "color",
+        "handler-name": "color_definition",
+        "width": 100,
+        "height": 100,
+        "background-color": "yellow"
+    },
+    {
+        "id": "color5",
+        "type": "SwitchArtistButton",
+        "style-class": "color",
+        "handler-name": "color_definition",
+        "width": 100,
+        "height": 100,
+        "background-color": "purple"
+    },
+    {
+        "id": "color6",
+        "type": "SwitchArtistButton",
+        "style-class": "color",
+        "handler-name": "color_definition",
+        "width": 100,
+        "height": 100,
+        "background-color": "black"
+    }
+]
