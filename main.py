@@ -477,13 +477,36 @@ class Yardstick(Clutter.Actor):
 class Button(Mx.Button):
     __gtype_name__ = "SwitchArtistButton"
     __gproperties__ = {
-        "handler_name": (GObject.TYPE_STRING, None, None, "",
-                 GObject.PARAM_READWRITE)
+        "handler_name": (
+            GObject.TYPE_STRING, None, None, "",
+            GObject.PARAM_READWRITE),
+        "ratio_width": (
+            GObject.TYPE_FLOAT, None, None, 0, 1., 0,
+            GObject.PARAM_READWRITE),
+        "ratio_height": (
+            GObject.TYPE_FLOAT, None, None, 0,
+            1., 0, GObject.PARAM_READWRITE)
     }
     def __init__(self):
         super().__init__()
-        self.set_reactive(True)
-        self.properties = {}
+
+    @property
+    def ratio_width(self):
+        return self._ratio_width
+
+    @ratio_width.setter
+    def ratio_width(self, value):
+        self._ratio_width = value
+        self.set_width(value * Gdk.Screen.width())
+
+    @property
+    def ratio_height(self):
+        return self._ratio_height
+
+    @ratio_height.setter
+    def ratio_height(self, value):
+        self._ratio_height = value
+        self.set_height(value * Gdk.Screen.height())
 
     @property
     def handler_name(self):
@@ -626,6 +649,14 @@ class Easel(Clutter.Actor):
             GObject.SIGNAL_RUN_FIRST,
             None, ())
     }
+    __gproperties__ = {
+        "ratio_width": (
+            GObject.TYPE_FLOAT, None, None, 0, 1., 0,
+            GObject.PARAM_READWRITE),
+        "ratio_height": (
+            GObject.TYPE_FLOAT, None, None, 0,
+            1., 0, GObject.PARAM_READWRITE)
+    }
     
     def __init__(self):
         self.canvas = Clutter.Canvas()
@@ -634,7 +665,6 @@ class Easel(Clutter.Actor):
         self.navigator = None
         self.yardstick = None
         self.bender = None
-        self.properties = {}
         self.line_width = 10
         self.width = 0 # widgth of the drawing area
         self.height = 0 # height of the drawing area
@@ -657,6 +687,24 @@ class Easel(Clutter.Actor):
         self.set_reactive(True)
         self.stage_handler_id = 0  # id of the current stage handler
         self.stage = None
+
+    @property
+    def ratio_width(self):
+        return self._ratio_width
+
+    @ratio_width.setter
+    def ratio_width(self, value):
+        self._ratio_width = value
+        self.set_width(value * Gdk.Screen.width())
+
+    @property
+    def ratio_height(self):
+        return self._ratio_height
+
+    @ratio_height.setter
+    def ratio_height(self, value):
+        self._ratio_height = value
+        self.set_height(value * Gdk.Screen.height())
 
     def run(self, *args):
         try:
@@ -785,10 +833,12 @@ class Easel(Clutter.Actor):
         return True
 
     def do_get_property(self, pspec):
-        return self.properties[pspec.name]
+        attr = self.__class__.__dict__.get(pspec.name.replace("-", "_"))
+        return attr.fget(self)
 
     def do_set_property(self, pspec, value):
-        self.properties[pspec.name] = value
+        attr = self.__class__.__dict__.get(pspec.name.replace("-", "_"))
+        attr.fset(self, value)
 
     def clear_canvas(self):
         self._set_canvas_background()

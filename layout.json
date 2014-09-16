@@ -6,8 +6,8 @@
         "y-expand": true,
         "margin-top": 25,
         "margin-bottom": 25,
-        "margin-left": 25,
-        "margin-right": 25,
+        "margin-left": 15,
+        "margin-right": 15,
         "layout-manager":
             {
                 "type": "ClutterBinLayout"
@@ -49,32 +49,32 @@
     {
         "id": "line1",
         "type": "SwitchArtistButton",
-        "width": 100,
+        "ratio-width": 0.075,
         "handler-name": "line_width_definition",
-        "height": 100,
+        "ratio-height": 0.12,
         "label": "5 pkt"
     },
     {
         "id": "line2",
         "type": "SwitchArtistButton",
-        "width": 100,
+        "ratio-width": 0.075,
         "handler-name": "line_width_definition",
-        "height": 100,
+        "ratio-height": 0.12,
         "label": "10 pkt"
     },
     {
         "id": "line3",
         "type": "SwitchArtistButton",
-        "width": 100,
+        "ratio-width": 0.075,
         "handler-name": "line_width_definition",
-        "height": 100,
+        "ratio-height": 0.12,
         "label": "15 pkt"
     },
     {
         "id": "easel",
         "type": "SwitchArtistEasel",
-        "width": 1100,
-        "height": 700
+        "ratio-width": 0.82,
+        "ratio-height": 0.82
     },
     {
         "id": "main_menu",
@@ -90,64 +90,62 @@
     {
         "id": "button1",
         "type": "SwitchArtistButton",
-        "width": 100,
+        "ratio-width": 0.075,
         "handler-name": "new_spot",
-        "height": 100,
+        "ratio-height": 0.12,
         "label": "NOWY\nPKT"
     },
     {
         "id": "button2",
         "type": "SwitchArtistButton",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "handler-name": "undo",
         "label": "COFNIJ"
     },
     {
         "id": "button3",
         "type": "SwitchArtistButton",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "handler-name": "move_to_color_menu",
         "label": "KOLORY"
     },
     {
         "id": "button4",
         "type": "SwitchArtistButton",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "handler-name": "move_to_line_menu",
         "label": "LINIE"
     },
     {
         "id": "button5",
         "type": "SwitchArtistButton",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "handler-name": "save_to_file",
         "label": "ZAPISZ"
     },
     {
         "id": "button6",
         "type": "SwitchArtistButton",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "handler-name": "draw",
         "label": "RYSUJ"
     },
     {
         "id": "button7",
         "type": "SwitchArtistButton",
-        "width": 100,
+        "ratio-width": 0.075,
         "handler-name": "clear_canvas",
-        "height": 100,
+        "ratio-height": 0.12,
         "label": "CZYŚĆ"
     },
     {
         "id": "color_menu",
         "type": "ClutterActor",
-        "width": 100,
-        "height": 600,
         "layout-manager":
             {
                 "type": "ClutterBoxLayout",
@@ -161,8 +159,8 @@
         "type": "SwitchArtistButton",
         "style-class": "color",
         "handler-name": "color_definition",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "background-color": "red"
     },
     {
@@ -170,8 +168,8 @@
         "type": "SwitchArtistButton",
         "style-class": "color",
         "handler-name": "color_definition",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "background-color": "blue"
     },
     {
@@ -179,8 +177,8 @@
         "type": "SwitchArtistButton",
         "style-class": "color",
         "handler-name": "color_definition",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "background-color": "green"
     },
     {
@@ -188,8 +186,8 @@
         "type": "SwitchArtistButton",
         "style-class": "color",
         "handler-name": "color_definition",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "background-color": "yellow"
     },
     {
@@ -197,8 +195,8 @@
         "type": "SwitchArtistButton",
         "style-class": "color",
         "handler-name": "color_definition",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "background-color": "purple"
     },
     {
@@ -206,8 +204,8 @@
         "type": "SwitchArtistButton",
         "style-class": "color",
         "handler-name": "color_definition",
-        "width": 100,
-        "height": 100,
+        "ratio-width": 0.075,
+        "ratio-height": 0.12,
         "background-color": "black"
     }
 ]
