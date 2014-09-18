@@ -818,15 +818,16 @@ class Easel(Clutter.Actor):
         return True
 
     def _draw_erase(self, cnvs, ctxt, width, height):
-        desc = self.path_history.pop()
-        ctxt.append_path(desc["path"])
-        ctxt.set_line_width(desc["line_width"])
-        ctxt.set_line_cap(desc["line_cap"])
-        ctxt.set_source_rgba(self.background_color[0],
-                             self.background_color[1],
-                             self.background_color[2],
-                             self.background_color[3])
-        ctxt.stroke()
+        if len(self.path_history) > 0:
+            desc = self.path_history.pop()
+            ctxt.append_path(desc["path"])
+            ctxt.set_line_width(desc["line_width"])
+            ctxt.set_line_cap(desc["line_cap"])
+            ctxt.set_source_rgba(self.background_color[0],
+                                 self.background_color[1],
+                                 self.background_color[2],
+                                 self.background_color[3])
+            ctxt.stroke()
         return True
     
     def _draw(self, cnvs, ctxt, width, height):
