@@ -570,7 +570,7 @@ class Dispatcher(GObject.GObject):
             "move_to_line_menu": self.move_to_line_menu,
             "move_to_color_menu": self.move_to_color_menu,
             "new_spot": self.localize_new_spot,
-            "undo": self.undo,
+            "erase": self.erase,
             "save_to_file": self.save_to_file,
             "draw": self.run_navigator,
             "clear_canvas": self.clear_canvas
@@ -613,8 +613,8 @@ class Dispatcher(GObject.GObject):
         self.stop_scanning()
         self.easel.run_localizer()
 
-    def undo(self, source):
-        self.easel.undo()
+    def erase(self, source):
+        self.easel.erase()
 
     def save_to_file(self, source):
         self.easel.save_to_file()
@@ -678,6 +678,7 @@ class Easel(Clutter.Actor):
         self.background_color = (0.843, 0.784, 0.843, 1)  # color of the background
                                                       # canvas
         self.path_history = []  # history of drawing
+        self.line_cap = cairo.LINE_CAP_ROUND  # cap of the draw lines
         self.set_background_color(Clutter.Color.new(255*self.background_color[0],
                                                      255*self.background_color[1],
                                                      255*self.background_color[2],
@@ -816,11 +817,20 @@ class Easel(Clutter.Actor):
         ctxt.get_target().write_to_png(SAVING_PATH)
         return True
 
-    def _draw_undo(self, cnvs, ctxt, width, height):
+    def _draw_erase(self, cnvs, ctxt, width, height):
+        desc = self.path_history.pop()
+        ctxt.append_path(desc["path"])
+        ctxt.set_line_width(desc["line_width"])
+        ctxt.set_line_cap(desc["line_cap"])
+        ctxt.set_source_rgba(self.background_color[0],
+                             self.background_color[1],
+                             self.background_color[2],
+                             self.background_color[3])
+        ctxt.stroke()
         return True
     
     def _draw(self, cnvs, ctxt, width, height):
-        ctxt.set_line_cap(cairo.LINE_CAP_ROUND)
+        ctxt.set_line_cap(self.line_cap)
         ctxt.set_line_width(self.line_width)
         ctxt.curve_to(self.from_x, self.from_y, self.through_x,
                       self.through_y, self.to_x, self.to_y)
@@ -828,7 +838,9 @@ class Easel(Clutter.Actor):
                              self.rgba[1],
                              self.rgba[2],
                              self.rgba[3])
-        self.path_history.append(ctxt.copy_path())
+        self.path_history.append({"path": ctxt.copy_path(),
+                                  "line_width": self.line_width,
+                                  "line_cap": self.line_cap})
         ctxt.stroke()
         return True
 
@@ -843,11 +855,11 @@ class Easel(Clutter.Actor):
     def clear_canvas(self):
         self._set_canvas_background()
 
-    def undo(self):
+    def erase(self):
         self.canvas.disconnect_by_func(self._draw)
-        self.canvas.connect("draw", self._draw_undo)
+        self.canvas.connect("draw", self._draw_erase)
         self.canvas.invalidate()
-        self.canvas.disconnect_by_func(self._draw_undo)
+        self.canvas.disconnect_by_func(self._draw_erase)
         self.canvas.connect("draw", self._draw)
 
     def save_to_file(self):

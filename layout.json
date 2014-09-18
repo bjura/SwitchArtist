@@ -100,8 +100,8 @@
         "type": "SwitchArtistButton",
         "ratio-width": 0.075,
         "ratio-height": 0.12,
-        "handler-name": "undo",
-        "label": "COFNIJ"
+        "handler-name": "erase",
+        "label": "GUMKA"
     },
     {
         "id": "button3",
